@@ -48,7 +48,44 @@ class ImportCsvCommand extends Command
             fclose($handle);
         }
 
-        User::insert($extractedData);
+        $saveData = $this->ask("Do you want to save this data to the database", 'yes');
+
+        if ($saveData == 'yes') {
+            User::insert($extractedData);
+        }
+
+
+        $shouldDisplayData = $this->ask("Do you want to see the extracted data on this console?", 'yes');
+
+        if ($shouldDisplayData == 'yes') {
+            $this->info('------------------------------------------------------------------------------------');
+            $this->info('| Title                | First Name           | Initial              | Last Name    |');
+            $this->info('-------------------------------------------------------------------------------------');
+
+            foreach ($extractedData as $datum) {
+                $this->generateNewRowString($datum);
+            }
+        }
         return 0;
+    }
+
+    private function generateNewRowString(array $data): void
+    {
+        $title = $this->getValueSpecifiedString($data['title']);
+        $firstName = $this->getValueSpecifiedString($data['first_name']);
+        $initial = $this->getValueSpecifiedString($data['initial']);
+        $lastName = $this->getValueSpecifiedString($data['last_name']);
+
+        $this->info("{$title}{$firstName}{$initial}{$lastName}");
+    }
+
+    private function getValueSpecifiedString($value): string
+    {
+        $maxLengthOfColumn = 22;
+        $valueLength = strlen($value);
+        $diff = $maxLengthOfColumn - $valueLength;
+        $repeated = str_repeat(" ", $diff);
+
+        return "|$value$repeated";
     }
 }
