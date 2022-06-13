@@ -2,15 +2,12 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Arr;
-use phpDocumentor\Reflection\Types\This;
 
 class UserBioDataExtractor
 {
     protected string $firstName = '';
     protected string $lastName= '';
     protected string $initial= '';
-    protected string $secondTitle= '';
     protected string $title = '';
     protected array $titles = ['Mrs', 'Mr', 'Dr', 'Engr', 'Prof', 'Mister', 'Miss', 'Ms'];
     protected string $stringValue = '';
