@@ -57,7 +57,7 @@ class UserBioDataExtractorTest extends TestCase
 
         $parts4 = $this->bioDataExtractor->extractTitles($test4);
 
-        $this->assertEquals(trim($parts4), '');
+        $this->assertNull($parts4);
     }
 
     public function test_helper_class_sets_correct_initials_from_string()
