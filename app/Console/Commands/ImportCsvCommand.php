@@ -59,11 +59,12 @@ class ImportCsvCommand extends Command
 
         if ($shouldDisplayData == 'yes') {
             $this->info('------------------------------------------------------------------------------------');
-            $this->info('| Title                | First Name           | Initial              | Last Name    |');
+            $this->info('| Title                | First Name           | Initial              | Last Name     ');
             $this->info('-------------------------------------------------------------------------------------');
 
             foreach ($extractedData as $datum) {
                 $this->generateNewRowString($datum);
+                $this->info('------------------------------------------------------------------------------------');
             }
         }
         return 0;
