@@ -51,7 +51,7 @@ class UserBioDataExtractor
 
 
             foreach ($parts as $key => $part) {
-                if ($key == 0 && strlen($part) != 1) {
+                if ($key == 0 && strlen($part) != 1 && count($parts) != 1) {
                     $first_name = $part;
                 } elseif (strlen($part) == 1) {
                     $initial = $part;
